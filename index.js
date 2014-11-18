@@ -43,6 +43,7 @@ HipChatNotify.prototype.__notify__ = function(data, color, callback){
     uri: util.format('https://api.hipchat.com/v2/room/%s/notification', this.id_or_name),
     body: JSON.stringify(body),
     json: true,
+    headers: { 'content-type':'application/json' },
     auth: { bearer:this.auth_token }
   }, function (error, response, res) {
     if (callback) {
