@@ -40,21 +40,18 @@ HipChatNotify.prototype.__notify__ = function(data, color, callback){
 
   var host = process.env.HIPCHAT_HOST || 'https://api.hipchat.com'
 
-  console.log(host + ": " + util.format(host + '/v2/room/%s/notification?auth_token=%s', this.id_or_name, this.auth_token));
+  
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   request({
     method: 'POST',
-    uri: util.format(host + '/v2/room/%s/notification?auth_token=%s', this.id_or_name, this.auth_token),
+    uri: util.format(host + '/v2/room/%s/notification', this.id_or_name),
     body: body,
     json: true,
     headers: { 'content-type':'application/json' },
     rejectUnauthorized: false,
-    debug: true,
-    Authorization: "Bearer " + this.auth_token,
     auth: { bearer:this.auth_token }
   }, function (error, response, res) {
     if (callback) {
-      console.log(response + ", " + res + ", " + error)
       callback(error, response.statusCode === 204 ? { status:'ok'} : res);
     }
   });
