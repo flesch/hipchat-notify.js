@@ -14,7 +14,7 @@ $ npm install --save hipchat-notify
 
 ## Usage
 
-Create a new instance of `HipChatNotify` for each room you want to notify, including the room ID or name and the notification token (created on the HipChat admin site).
+Create a new instance of `HipChatNotify` for each room you want to notify, including the room ID or name and the notification token (created on the HipChat admin site under rooms->[room]->tokens).
 
 ```javascript
 var HipChatNotify = require('hipchat-notify');
@@ -44,6 +44,21 @@ hipchat.info('Pastry I love cupcake fruitcake <strong>chocolate cake</strong> gu
 hipchat.warning('<i><b>Warning</b>: Cupcake powder lollipop bonbon liquorice croissant sweet.</i>'); // red
 hipchat.success('Tiramisu jelly gummies bear claw brownie caramels applicake chocolate bar I love.'); // green
 hipchat.error('<b>Error</b>: Marshmallow cheesecake chocolate topping chocolate cake I love ice cream.'); // red
+```
+
+### Configuration
+
+If you are using the hosted version of hipchat at hipchat.custom.com and need a custom hostname:
+
+```
+#In bash
+export HIPCHAT_HOST=https://hipchat.custom.com
+#If you are using a corporate proxy
+export no_proxy=hipchat.custom.com
+...
+#In JS
+var HipChatNotify = require('hipchat-notify');
+var hipchat = new HipChatNotify(836305, '1nkUSmF8rH4QY1wMGj1rcelvtYKUG7rFteEv8ROZ');
 ```
 
 ## License

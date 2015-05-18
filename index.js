@@ -38,12 +38,17 @@ HipChatNotify.prototype.__notify__ = function(data, color, callback){
     message_format: /<[a-z][\s\S]*>/i.test(msg.message) ? 'html' : 'text'
   });
 
+  var host = process.env.HIPCHAT_HOST || 'https://api.hipchat.com'
+
+  
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   request({
     method: 'POST',
-    uri: util.format('https://api.hipchat.com/v2/room/%s/notification', this.id_or_name),
+    uri: util.format(host + '/v2/room/%s/notification', this.id_or_name),
     body: body,
     json: true,
     headers: { 'content-type':'application/json' },
+    rejectUnauthorized: false,
     auth: { bearer:this.auth_token }
   }, function (error, response, res) {
     if (callback) {
