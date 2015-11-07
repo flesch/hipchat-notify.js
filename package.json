@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/flesch/hipchat-notify.js"
+    "url": "https://github.com/flesch/hipchat-notify"
   },
   "keywords": [
     "hipchat",
@@ -21,9 +21,9 @@
   "author": "John Flesch <john@fles.ch> (http://fles.ch/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/flesch/hipchat-notify.js/issues"
+    "url": "https://github.com/flesch/hipchat-notify/issues"
   },
-  "homepage": "https://github.com/flesch/hipchat-notify.js",
+  "homepage": "https://github.com/flesch/hipchat-notify",
   "dependencies": {
     "request": "^2.51.0",
     "underscore": "^1.7.0"
