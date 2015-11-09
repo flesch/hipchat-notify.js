@@ -1,31 +1,31 @@
 {
   "name": "hipchat-notify",
-  "version": "1.0.3",
   "description": "Send a message to a HipChat room.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "1.0.3",
+  "author": "John Flesch <john@fles.ch> (http://fles.ch/)",
+  "bugs": {
+    "url": "https://github.com/flesch/hipchat-notify/issues"
   },
+  "dependencies": {
+    "request": "^2.51.0",
+    "underscore": "^1.7.0"
+  },
+  "homepage": "https://github.com/flesch/hipchat-notify",
+  "keywords": [
+    "chat",
+    "hipchat",
+    "message",
+    "notification",
+    "notify",
+    "send"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/flesch/hipchat-notify"
   },
-  "keywords": [
-    "hipchat",
-    "message",
-    "notify",
-    "notification",
-    "send",
-    "chat"
-  ],
-  "author": "John Flesch <john@fles.ch> (http://fles.ch/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/flesch/hipchat-notify/issues"
-  },
-  "homepage": "https://github.com/flesch/hipchat-notify",
-  "dependencies": {
-    "request": "^2.51.0",
-    "underscore": "^1.7.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
