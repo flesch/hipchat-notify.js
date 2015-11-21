@@ -4,68 +4,84 @@
 
 Using [version 2 of HipChat's API](https://www.hipchat.com/docs/apiv2), this Node library abstracts sending [notifications](https://www.hipchat.com/docs/apiv2/method/send_room_notification) to HipChat rooms.
 
-![HipChat](https://cloud.githubusercontent.com/assets/13259/4345434/da13eaba-40cd-11e4-9b22-5f61da9cd517.png)
+![HipChat](https://cloud.githubusercontent.com/assets/13259/11049199/615d391a-8702-11e5-8d57-99ef3ee8aaa7.png)
 
 ## Installation
 
-```javascript
+First, make sure you have a **token** created for each room you'll want to notify.
+
+
+![HipChat Room Token](https://cloud.githubusercontent.com/assets/13259/11046618/145ec9ca-86f4-11e5-8928-61f79403073b.png)
+
+![HipChat Room Token](https://cloud.githubusercontent.com/assets/13259/11046617/145dff36-86f4-11e5-9c64-11b50773be09.png)
+
+
+Then, install **hipchat-notify** with npm.
+
+```bash
 $ npm install --save hipchat-notify
 ```
 
+Create a new instance of `HipChatNotify` for each room you want to notify, including the room **ID** or **name** and the **token**.
+
+```javascript
+import HipChatNotify from 'hipchat-notify';
+
+const hipchat = new HipChatNotify({ room:'2139866', token:'Sq8Jd39ZR8R1xzZcfcyZVWEgYAdU9PiD2kUARP3X' });
+const { notify, info, warning, success, error } = hipchat;
+```
+
+If you're using [HipChat Server](https://www.hipchat.com/server), include the `server` key in the configuration object.
+
+```javascript
+const hipchat = new HipChatNotify({
+  room: '2139866',
+  token: 'Sq8Jd39ZR8R1xzZcfcyZVWEgYAdU9PiD2kUARP3X',
+  server: 'hipchat.mycompany.com'
+});
+```
+
+The room **ID** and **token** above are real! Join the room these examples are posted to here: <https://www.hipchat.com/gzS5PTk20>
+
 ## Usage
 
-Create a new instance of `HipChatNotify` for each room you want to notify, including the room ID or name and the notification token (created on the HipChat admin site under rooms->[room]->tokens).
+### hipchat.notify(`message`, `callback`);
+
+The `message` argument accepts either a `String` or an `Object`.
 
 ```javascript
-var HipChatNotify = require('hipchat-notify');
-var hipchat = new HipChatNotify(836305, '1nkUSmF8rH4QY1wMGj1rcelvtYKUG7rFteEv8ROZ');
+hipchat.notify('Zombie ipsum reversus ab viral inferno.', (err, { status }) => {
+  if (!err) {
+    console.log(`The HipChat API said things went ${status}`);
+  }
+});
 ```
 
-### hipchat.notify(`str_or_object`, `[callback]`);
+If your message includes HTML elements, `message_format` is set to `html`. This, and other defaults (like color), can be overriden by passing an `Object` instead of a `String`.
 
 ```javascript
-hipchat.notify('Pastry I love cupcake fruitcake chocolate cake gummi bears dragée I love.');
+hipchat.notify({
+  message: 'Zombie ipsum reversus ab viral inferno.',
+  color: 'red', // Defaults to 'yellow'.
+  notify: false // Defaults to true.
+});
 ```
 
-The color of the message will be `yellow` by default, and will set `notify` to true. To change this, pass an `Object` instead of a `String`.
+Be sure to reference HipChat's API [documentation](https://www.hipchat.com/docs/apiv2/method/send_room_notification) for the options you can specifiy (like including a `from` parameter).
 
-```javascript
-hipchat.notify({ message:'Pastry I love cupcake fruitcake chocolate cake gummi bears dragée I love.', color:'purple', notify:false });
-```
+Convience methods to define the message color are also included.
 
-The `message_format` is automatically set for you, based on whether or not your `message` includes HTML elements. Passing an `Object` instead of a `String` will let you override this and other defaults.
-
-### Examples
-
-Other methods also exist to change the color.
-
-```
-hipchat.info('Pastry I love cupcake fruitcake <strong>chocolate cake</strong> gummi bears dragée I love.'); // gray
-hipchat.warning('<i><b>Warning</b>: Cupcake powder lollipop bonbon liquorice croissant sweet.</i>'); // red
-hipchat.success('Tiramisu jelly gummies bear claw brownie caramels applicake chocolate bar I love.'); // green
-hipchat.error('<b>Error</b>: Marshmallow cheesecake chocolate topping chocolate cake I love ice cream.'); // red
-```
-
-### Configuration
-
-If you are using the hosted version of hipchat at hipchat.custom.com and need a custom hostname:
-
-```
-#In bash
-export HIPCHAT_HOST=https://hipchat.custom.com
-#If you are using a corporate proxy
-export no_proxy=hipchat.custom.com
-...
-#In JS
-var HipChatNotify = require('hipchat-notify');
-var hipchat = new HipChatNotify(836305, '1nkUSmF8rH4QY1wMGj1rcelvtYKUG7rFteEv8ROZ');
-```
+* hipchat.notify: `{ color:'yellow' }`
+* hipchat.info: `{ color:'gray' }`
+* hipchat.warning: `{ color:'red' }`
+* hipchat.success: `{ color:'green' }`
+* hipchat.error: `{ color:'red' }`
 
 ## License
 
 [The MIT License (MIT)](http://flesch.mit-license.org/)
 
-Copyright © 2013 John Flesch, [http://fles.ch](http://fles.ch/)
+Copyright © 2015 John Flesch, [http://fles.ch](http://fles.ch/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
