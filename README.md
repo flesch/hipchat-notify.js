@@ -77,6 +77,13 @@ Convience methods to define the message color are also included.
 * hipchat.success: `{ color:'green' }`
 * hipchat.error: `{ color:'red' }`
 
+See `tests/test.js` for examples you can run.
+
+```bash
+$ babel-node tests/test.js
+```
+
+
 ## License
 
 [The MIT License (MIT)](http://flesch.mit-license.org/)
