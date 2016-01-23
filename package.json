@@ -2,14 +2,19 @@
   "name": "hipchat-notify",
   "description": "Send a message to a HipChat room.",
   "version": "2.0.0",
-  "author": "John Flesch <john@fles.ch> (http://fles.ch/)",
+  "author": {
+    "name": "John Flesch",
+    "email": "john@fles.ch",
+    "url": "http://fles.ch/"
+  },
   "bugs": {
     "url": "https://github.com/flesch/hipchat-notify/issues"
   },
   "dependencies": {
-    "got": "^5.2.1"
+    "got": "^6.1.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.5",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13"
   },
