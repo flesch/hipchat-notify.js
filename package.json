@@ -28,13 +28,13 @@
     "send"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/flesch/hipchat-notify"
   },
   "scripts": {
-    "build": "babel index.js --out-file lib/index.js",
+    "build": "babel index.js --out-file dist/index.js",
     "test": "babel-node tests/test.js"
   }
 }
